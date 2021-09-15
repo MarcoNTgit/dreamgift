@@ -31,6 +31,7 @@ public class fMaestros extends javax.swing.JFrame {
     private void initComponents() {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Dream Gift. Mantención Maestros");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -77,13 +78,14 @@ public class fMaestros extends javax.swing.JFrame {
         frame.setBounds(0, 0, 300, 400);
         frame.setLayout(null);
         final JTabbedPane tabbedPane = new JTabbedPane();
-        tabbedPane.addTab("One", new JPanel());
-        tabbedPane.addTab("Two", new JPanel());
-        tabbedPane.addTab("Three", new JPanel());
+        tabbedPane.addTab("Uno", new JPanel());
+        tabbedPane.addTab("Dos", new JPanel());
+        tabbedPane.addTab("Tres", new JPanel());
         tabbedPane.setBounds(0, 0, 300, 400);
         frame.add(tabbedPane);
         frame.setVisible(true);
         /* Create and display the form */
+        
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new fMaestros().setVisible(true);
