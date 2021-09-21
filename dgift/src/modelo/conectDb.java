@@ -4,20 +4,29 @@ package modelo;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
  
 public class conectDb {
-    public static final String URL = "jdbc:mysql://u6nshiylpcrj0ubv:PkqAVXAQUbHFcYUu8IVx@bfjckqmq9ts1wg2pmsv0-mysql.services.clever-cloud.com:3306/bfjckqmq9ts1wg2pmsv0";
-    public static final String USER = "bfjckqmq9ts1wg2pmsv0";
-    public static final String CLAVE = "PkqAVXAQUbHFcYUu8IVx";
+    private final String BASE ="bfjckqmq9ts1wg2pmsv0";
+    private final String URL = "jdbc:mysql://u6nshiylpcrj0ubv:PkqAVXAQUbHFcYUu8IVx@bfjckqmq9ts1wg2pmsv0-mysql.services.clever-cloud.com:3306/" + BASE;
+    private final String USER = "u6nshiylpcrj0ubv";
+    private final String CLAVE = "PkqAVXAQUbHFcYUu8IVx";
+    private Connection con = null;
      
     public Connection getConexion(){
-        Connection con = null;
+        
         try{
             Class.forName("com.mysql.cj.jdbc.Driver");
             con = (Connection) DriverManager.getConnection(URL, USER, CLAVE);
-        }catch(ClassNotFoundException | SQLException e){
-            System.out.println("Error: " + e.getMessage());
+        }catch(SQLException e){
+            System.err.println(e);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(conectDb.class.getName()).log(Level.SEVERE, null, ex);
         }
         return con;
     }
+
+   
 }
+
