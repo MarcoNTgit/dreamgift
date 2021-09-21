@@ -25,15 +25,12 @@ public class consultasRedes extends conectDb {
      
      ps = con.prepareStatement(sql);
      
-       try{
+       
      
        ps.setInt(1, red.getId_rrss());
+        return false;
      
-       }catch{
-           
-           
-       
-       }
+      
         
     }
 
