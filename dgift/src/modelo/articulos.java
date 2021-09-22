@@ -1,30 +1,25 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package modelo;
 
 import java.util.Date;
 
-/**
- *
- * @author user
- */
-
 public class articulos {
-    private int idArticulo;
-    private String nombreArticulo;
-    private int stockArticulo;
-    private int precioArticulo;
-    private Date fechaVencimiento;
+            private int idArticulo;
+        private String nombreArticulo;
+        private int stockArticulo;
+        private Date venceArticulo;
+        private float precioArticulo;
+        private int categoriaArticulo;
 
-    public articulos(int idArticulo, String nombreArticulo, int stockArticulo, int precioArticulo, Date fechaVencimiento) {
+    public articulos() {
+    }
+
+    public articulos(int idArticulo, String nombreArticulo, int stockArticulo, Date venceArticulo, float precioArticulo, int categoriaArticulo) {
         this.idArticulo = idArticulo;
         this.nombreArticulo = nombreArticulo;
         this.stockArticulo = stockArticulo;
+        this.venceArticulo = venceArticulo;
         this.precioArticulo = precioArticulo;
-        this.fechaVencimiento = fechaVencimiento;
+        this.categoriaArticulo = categoriaArticulo;
     }
 
     public int getIdArticulo() {
@@ -51,19 +46,28 @@ public class articulos {
         this.stockArticulo = stockArticulo;
     }
 
-    public int getPrecioArticulo() {
+    public Date getVenceArticulo() {
+        return venceArticulo;
+    }
+
+    public void setVenceArticulo(Date venceArticulo) {
+        this.venceArticulo = venceArticulo;
+    }
+
+    public float getPrecioArticulo() {
         return precioArticulo;
     }
 
-    public void setPrecioArticulo(int precioArticulo) {
+    public void setPrecioArticulo(float precioArticulo) {
         this.precioArticulo = precioArticulo;
     }
 
-    public Date getFechaVencimiento() {
-        return fechaVencimiento;
+    public int getCategoriaArticulo() {
+        return categoriaArticulo;
     }
 
-    public void setFechaVencimiento(Date fechaVencimiento) {
-        this.fechaVencimiento = fechaVencimiento;
+    public void setCategoriaArticulo(int categoriaArticulo) {
+        this.categoriaArticulo = categoriaArticulo;
     }
+    
 }
