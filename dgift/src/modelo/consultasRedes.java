@@ -11,7 +11,7 @@ import java.sql.SQLException;
 
 /**
  *
- * @author Pro 6300
+ * @author Marco Bonilla
  */
 public class consultasRedes extends conectDb {
 
@@ -75,15 +75,20 @@ public class consultasRedes extends conectDb {
      
        try{
        ps = con.prepareStatement(sql);
-       ps.setString(1, red.getNombre_red());
-       ps.setInt(2, red.getEs_activo()); 
+       ps.setString(1, red.getNombre_red()); 
        rs = ps.executeQuery();
        
-       
-       return true;
+           if(rs.next()){
+           
+           red.setId_rrss(Integer.parseInt(rs.getString("id_rrss")));
+           red.setNombre_red(rs.getString("nombre_red"));
+           red.setEs_activo(Integer.parseInt (rs.getString("es_activo")));
+           return true;
+           }
+       return false;
        }catch(SQLException e){
        System.err.println(e);
-           return false;
+       return false;
        }finally{
          try{
            con.close();
