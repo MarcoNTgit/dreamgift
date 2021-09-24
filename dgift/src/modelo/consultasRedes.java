@@ -8,6 +8,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -40,7 +42,6 @@ public class consultasRedes extends conectDb {
      
     }
     
-    
     public boolean modificar(redes red) throws SQLException { 
      PreparedStatement ps = null;   
      Connection con =  getConexion();
@@ -65,7 +66,6 @@ public class consultasRedes extends conectDb {
        } 
      
     }
-    
     
     public boolean buscar(redes red) throws SQLException { 
      PreparedStatement ps = null;   
@@ -97,6 +97,36 @@ public class consultasRedes extends conectDb {
           }
        } 
      
+    }
+    
+    public List listar(){
+        PreparedStatement ps;   
+        ResultSet rs ;
+        Connection con =  getConexion();
+        String sql="SELECT * FROM redes";
+        
+        List<redes>datos=new ArrayList<>();
+        try {
+            ps=con.prepareStatement(sql);
+            rs=ps.executeQuery();
+            while (rs.next()){
+                redes red=new redes();
+                red.setId_rrss(Integer.parseInt(rs.getString("id_rrss")));
+                red.setNombre_red(rs.getString("nombre_red"));
+                red.setEs_activo(Integer.parseInt (rs.getString("es_activo")));
+                datos.add(red);
+            }
+        } catch (SQLException e) {
+       System.err.println(e);
+       
+       }finally{
+         try{
+           con.close();
+          }catch(SQLException e){
+             System.err.println(e);
+          }
+       } 
+        return datos;
     }
 
 }
