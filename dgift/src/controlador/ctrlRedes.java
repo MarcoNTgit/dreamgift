@@ -7,12 +7,17 @@ package controlador;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
-import modelo.consultasRedes;
+import modelo.redesDAO;
 import modelo.redes;
-import vista.fMaestros;
+//import vista.fMaestros;
+import vista.fMaestrosMarco;
         
 
 /**
@@ -22,32 +27,77 @@ import vista.fMaestros;
 public class ctrlRedes implements ActionListener{
     
     private redes red = new redes();
-    private consultasRedes redC = new consultasRedes();
-    private fMaestros frm = new fMaestros();
+    private redesDAO redC = new redesDAO();
+    private fMaestrosMarco frm = new fMaestrosMarco();
     DefaultTableModel modeloRed;
     
     
 
-    public ctrlRedes(fMaestros f) {
+    public ctrlRedes(fMaestrosMarco f) {
       this.frm = f;
         this.frm.btnCancelarRedes.addActionListener(this);
         this.frm.btnEditarRedes.addActionListener(this);
         this.frm.btnGuardarRedes.addActionListener(this);
         this.frm.btnSalirRedes.addActionListener(this);
-        this.frm.comboRedes.addActionListener(this);
         this.frm.txtRed.addActionListener(this);
-        listarP(frm.listRedes);
+        this.frm.chkActivoRedes.addActionListener(this);
+        this.frm.txtBusquedaRedes.addActionListener(this);
+        this.frm.txtIdRrss.addActionListener(this);
+        listarP(frm.grRedes);
     }
 
     
     @Override
     public void actionPerformed(ActionEvent e) {
+      if(e.getSource()== frm.btnGuardarRedes){
+      red.setNombre_red(frm.txtRed.getText());
+      red.setEs_activo((frm.chkActivoRedes.isSelected())?1:0);
       
+          try {
+              if(redC.registar(red)){
+                  limpiarPantalla();
+                  JOptionPane.showMessageDialog(null, "Registro Guardado Exitosamente");
+                  listarP(frm.grRedes);
+              }else{
+                  JOptionPane.showMessageDialog(null, "Error al guardar");           
+              } } catch (SQLException ex) {
+              Logger.getLogger(ctrlRedes.class.getName()).log(Level.SEVERE, null, ex);
+          }
+       }
+      
+       if(e.getSource()== frm.btnEditarRedes){
+      red.setId_rrss(Integer.parseInt(frm.txtIdRrss.getText()));
+      red.setNombre_red(frm.txtRed.getText());
+      red.setEs_activo((frm.chkActivoRedes.isSelected())?1:0);
+      
+          try {
+              if(redC.modificar(red)){
+                  limpiarPantalla();
+                  JOptionPane.showMessageDialog(null, "Registro Editado Exitosamente");
+                  listarP(frm.grRedes);
+              }else{
+                  JOptionPane.showMessageDialog(null, "Error al Editar");           
+              } } catch (SQLException ex) {
+              Logger.getLogger(ctrlRedes.class.getName()).log(Level.SEVERE, null, ex);
+          }
+       } 
+    }
+    
+    public void limpiarPantalla(){
+        frm.txtIdRrss.setText(null);
+        frm.txtRed.setText(null);
+        frm.chkActivoRedes.setSelected(false);
+        frm.btnCancelarRedes.setEnabled(false);
+        frm.btnEditarRedes.setEnabled(false);
+        frm.btnGuardarRedes.setEnabled(false);
     }
     
     public void listarP (JTable listRedes){
         
         modeloRed=(DefaultTableModel)listRedes.getModel();
+        modeloRed.getDataVector().removeAllElements();
+        modeloRed.fireTableDataChanged();
+        
         List<redes>lista= redC.listar();
         Object[]object = new Object[3];
         int i;
@@ -57,7 +107,8 @@ public class ctrlRedes implements ActionListener{
          object[2]= (lista.get(i).getEs_activo()==1)?Boolean.TRUE:Boolean.FALSE;
          modeloRed.addRow(object);
         }
-        frm.listRedes.setModel(modeloRed);
+        frm.grRedes.setModel(modeloRed);
+        
     }
     
     
