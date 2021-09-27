@@ -156,9 +156,10 @@ public class fMaestrosMarco extends javax.swing.JFrame {
         btnGuardarRedes = new javax.swing.JButton();
         btnCancelarRedes = new javax.swing.JButton();
         btnSalirRedes = new javax.swing.JButton();
-        jCheckBox1 = new javax.swing.JCheckBox();
-        txtBusqueda = new javax.swing.JTextField();
+        chkActivoRedes = new javax.swing.JCheckBox();
+        txtBusquedaRedes = new javax.swing.JTextField();
         jLabel23 = new javax.swing.JLabel();
+        txtIdRrss = new javax.swing.JTextField();
         jPanel10 = new javax.swing.JPanel();
         jLabel49 = new javax.swing.JLabel();
         jTextField15 = new javax.swing.JTextField();
@@ -1157,6 +1158,21 @@ public class fMaestrosMarco extends javax.swing.JFrame {
 
         jLabel47.setText("Nombre Red Social");
 
+        txtRed.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtRedKeyPressed(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtRedKeyReleased(evt);
+            }
+        });
+
+        grRedes = new javax.swing.JTable(){
+            public boolean isCellEditable(int rowIndex, int colIndex){
+                return false;
+            }
+
+        };
         grRedes.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -1173,8 +1189,16 @@ public class fMaestrosMarco extends javax.swing.JFrame {
                 return types [columnIndex];
             }
         });
-        grRedes.setColumnSelectionAllowed(true);
-        grRedes.setEnabled(false);
+        grRedes.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        grRedes.setFocusable(false);
+        grRedes.setName(""); // NOI18N
+        grRedes.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_INTERVAL_SELECTION);
+        grRedes.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_INTERVAL_SELECTION);
+        grRedes.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                grRedesMouseClicked(evt);
+            }
+        });
         jScrollPane15.setViewportView(grRedes);
         grRedes.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_INTERVAL_SELECTION);
         if (grRedes.getColumnModel().getColumnCount() > 0) {
@@ -1183,18 +1207,31 @@ public class fMaestrosMarco extends javax.swing.JFrame {
 
         btnEditarRedes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vista/Edit-Document-icon.png"))); // NOI18N
         btnEditarRedes.setText("Editar");
+        btnEditarRedes.setEnabled(false);
 
         btnGuardarRedes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vista/Save-icon.png"))); // NOI18N
         btnGuardarRedes.setText("Guardar");
+        btnGuardarRedes.setEnabled(false);
 
         btnCancelarRedes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vista/Actions-edit-delete-icon.png"))); // NOI18N
         btnCancelarRedes.setText("Cancelar");
+        btnCancelarRedes.setEnabled(false);
+        btnCancelarRedes.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnCancelarRedesMouseClicked(evt);
+            }
+        });
 
         btnSalirRedes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vista/Log-Out-icon.png"))); // NOI18N
         btnSalirRedes.setText("Salir");
+        btnSalirRedes.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                cerrarVentana(evt);
+            }
+        });
 
-        jCheckBox1.setText("Activo");
-        jCheckBox1.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
+        chkActivoRedes.setText("Activo");
+        chkActivoRedes.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
 
         jLabel23.setText("Buscar:");
 
@@ -1211,21 +1248,25 @@ public class fMaestrosMarco extends javax.swing.JFrame {
                         .addComponent(btnCancelarRedes, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(44, 44, 44)
                         .addComponent(btnSalirRedes, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addGroup(jPanel7Layout.createSequentialGroup()
+                            .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel47, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(txtIdRrss))
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addGroup(jPanel7Layout.createSequentialGroup()
+                                    .addComponent(txtRed, javax.swing.GroupLayout.PREFERRED_SIZE, 363, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(121, 121, 121))
+                                .addGroup(jPanel7Layout.createSequentialGroup()
+                                    .addComponent(jLabel23)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(txtBusquedaRedes, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(231, 231, 231))))
+                        .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(btnEditarRedes, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jScrollPane15, javax.swing.GroupLayout.PREFERRED_SIZE, 625, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
-                            .addComponent(jLabel47)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(txtRed, javax.swing.GroupLayout.PREFERRED_SIZE, 448, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGroup(jPanel7Layout.createSequentialGroup()
-                                    .addComponent(jCheckBox1)
-                                    .addGap(83, 83, 83)
-                                    .addComponent(jLabel23)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(txtBusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                        .addComponent(chkActivoRedes)))
                 .addGap(139, 139, 139))
         );
         jPanel7Layout.setVerticalGroup(
@@ -1233,13 +1274,14 @@ public class fMaestrosMarco extends javax.swing.JFrame {
             .addGroup(jPanel7Layout.createSequentialGroup()
                 .addGap(14, 14, 14)
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel47)
-                    .addComponent(txtRed, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtRed, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(chkActivoRedes)
+                    .addComponent(jLabel47, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jCheckBox1)
-                    .addComponent(txtBusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel23))
+                    .addComponent(txtBusquedaRedes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel23)
+                    .addComponent(txtIdRrss, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(14, 14, 14)
                 .addComponent(jScrollPane15, javax.swing.GroupLayout.PREFERRED_SIZE, 331, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(26, 26, 26)
@@ -1774,6 +1816,43 @@ public class fMaestrosMarco extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void txtRedKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtRedKeyPressed
+      
+        
+       if(this.txtIdRrss.getText().isEmpty()){
+          if(this.txtRed.getText().isBlank()==false){
+          this.btnCancelarRedes.setEnabled(true);
+          this.btnGuardarRedes.setEnabled(true);
+          }else{
+          this.btnCancelarRedes.setEnabled(false);
+          this.btnEditarRedes.setEnabled(false);
+          this.btnGuardarRedes.setEnabled(false);
+          }
+       }
+    }//GEN-LAST:event_txtRedKeyPressed
+
+    private void txtRedKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtRedKeyReleased
+        txtRedKeyPressed(evt);
+    }//GEN-LAST:event_txtRedKeyReleased
+
+    private void cerrarVentana(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cerrarVentana
+        this.setVisible(false);
+    }//GEN-LAST:event_cerrarVentana
+
+    private void btnCancelarRedesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCancelarRedesMouseClicked
+       this.txtIdRrss.setText(null);
+       this.txtRed.setText(null);
+       this.chkActivoRedes.setSelected(false);
+       this.btnCancelarRedes.setEnabled(false);
+       this.btnEditarRedes.setEnabled(false);
+       this.btnGuardarRedes.setEnabled(false);
+    }//GEN-LAST:event_btnCancelarRedesMouseClicked
+
+    private void grRedesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_grRedesMouseClicked
+       this.btnCancelarRedes.setEnabled(true);
+       this.btnEditarRedes.setEnabled(true);
+    }//GEN-LAST:event_grRedesMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -1793,7 +1872,7 @@ public class fMaestrosMarco extends javax.swing.JFrame {
     private javax.swing.JButton btnCancelarprove14;
     private javax.swing.JButton btnCancelarprove15;
     private javax.swing.JButton btnCancelarprove16;
-    private javax.swing.JButton btnCancelarprove17;
+    public javax.swing.JButton btnCancelarprove17;
     private javax.swing.JButton btnCancelarprove2;
     private javax.swing.JButton btnCancelarprove9;
     public javax.swing.JButton btnEditarRedes;
@@ -1803,7 +1882,7 @@ public class fMaestrosMarco extends javax.swing.JFrame {
     private javax.swing.JButton btnEditarprove14;
     private javax.swing.JButton btnEditarprove15;
     private javax.swing.JButton btnEditarprove16;
-    private javax.swing.JButton btnEditarprove17;
+    public javax.swing.JButton btnEditarprove17;
     private javax.swing.JButton btnEditarprove2;
     private javax.swing.JButton btnEditarprove9;
     public javax.swing.JButton btnGuardarRedes;
@@ -1813,7 +1892,7 @@ public class fMaestrosMarco extends javax.swing.JFrame {
     private javax.swing.JButton btnGuardarprove14;
     private javax.swing.JButton btnGuardarprove15;
     private javax.swing.JButton btnGuardarprove16;
-    private javax.swing.JButton btnGuardarprove17;
+    public javax.swing.JButton btnGuardarprove17;
     private javax.swing.JButton btnGuardarprove2;
     private javax.swing.JButton btnGuardarprove9;
     public javax.swing.JButton btnSalirRedes;
@@ -1823,11 +1902,12 @@ public class fMaestrosMarco extends javax.swing.JFrame {
     private javax.swing.JButton btnSalirprove14;
     private javax.swing.JButton btnSalirprove15;
     private javax.swing.JButton btnSalirprove16;
-    private javax.swing.JButton btnSalirprove17;
+    public javax.swing.JButton btnSalirprove17;
     private javax.swing.JButton btnSalirprove2;
     private javax.swing.JButton btnSalirprove9;
     private javax.swing.JComboBox<String> cbEstado;
     private javax.swing.JComboBox<String> cbEstadoprove;
+    public javax.swing.JCheckBox chkActivoRedes;
     private javax.swing.JTable grClientes;
     private javax.swing.JTable grClientes1;
     private javax.swing.JTable grClientes10;
@@ -1846,7 +1926,6 @@ public class fMaestrosMarco extends javax.swing.JFrame {
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
     private javax.swing.JButton jButton8;
-    private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JComboBox<String> jComboBox10;
     private javax.swing.JComboBox<String> jComboBox11;
@@ -1945,15 +2024,16 @@ public class fMaestrosMarco extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField9;
     private org.jdatepicker.JDatePicker pickNacimiento;
-    private javax.swing.JTabbedPane tabs;
+    public javax.swing.JTabbedPane tabs;
     private javax.swing.JTextField txtApellidos;
-    private javax.swing.JTextField txtBusqueda;
+    public javax.swing.JTextField txtBusquedaRedes;
     private javax.swing.JTextField txtCorreo;
     private javax.swing.JTextField txtCorreoprove;
     private javax.swing.JTextField txtDireccion;
     private javax.swing.JTextField txtDirprove;
     private javax.swing.JTextField txtFono;
     private javax.swing.JTextField txtFonoprove;
+    public javax.swing.JTextField txtIdRrss;
     private javax.swing.JTextField txtNombre;
     private javax.swing.JTextField txtNombreprove;
     public javax.swing.JTextField txtRed;
