@@ -67,28 +67,28 @@ public class redesDAO extends conectDb {
      
     }
     
-    public boolean buscar(redes red) throws SQLException { 
-     PreparedStatement ps = null;   
-     ResultSet rs =null;
-     Connection con =  getConexion();
-     String sql = "SELECT * FROM redes WHERE id_rrss=?";
-     
-       try{
-       ps = con.prepareStatement(sql);
-       ps.setString(1, red.getNombre_red()); 
-       rs = ps.executeQuery();
+    
+   /* public List listar(){
+        PreparedStatement ps;   
+        ResultSet rs ;
+        Connection con =  getConexion();
        
-           if(rs.next()){
-           
-           red.setId_rrss(Integer.parseInt(rs.getString("id_rrss")));
-           red.setNombre_red(rs.getString("nombre_red"));
-           red.setEs_activo(Integer.parseInt (rs.getString("es_activo")));
-           return true;
-           }
-       return false;
-       }catch(SQLException e){
+        String sql="SELECT * FROM redes";
+        
+        List<redes>datos=new ArrayList<>();
+        try {
+            ps=con.prepareStatement(sql);
+            rs=ps.executeQuery();
+            while (rs.next()){
+                redes red=new redes();
+                red.setId_rrss(Integer.parseInt(rs.getString("id_rrss")));
+                red.setNombre_red(rs.getString("nombre_red"));
+                red.setEs_activo(Integer.parseInt (rs.getString("es_activo")));
+                datos.add(red);
+            }
+        } catch (SQLException e) {
        System.err.println(e);
-       return false;
+       
        }finally{
          try{
            con.close();
@@ -96,19 +96,22 @@ public class redesDAO extends conectDb {
              System.err.println(e);
           }
        } 
-     
-    }
+        return datos;
+    }*/
     
-    public List listar(){
-        PreparedStatement ps;   
+    
+    public List buscar(redes redb) throws SQLException{
+        PreparedStatement ps; 
         ResultSet rs ;
         Connection con =  getConexion();
-        String sql="SELECT * FROM redes";
-        
+
+        String sql="SELECT * FROM redes where id_rrss=? or nombre_red LIKE CONCAT('%',?,'%')";
+        ps = con.prepareStatement(sql);
+        ps.setInt(1, redb.getId_rrss());
+        ps.setString(2, redb.getNombre_red());
+        rs=ps.executeQuery();
         List<redes>datos=new ArrayList<>();
         try {
-            ps=con.prepareStatement(sql);
-            rs=ps.executeQuery();
             while (rs.next()){
                 redes red=new redes();
                 red.setId_rrss(Integer.parseInt(rs.getString("id_rrss")));
