@@ -10,7 +10,9 @@ import controlador.ctrlRedes;
 import java.awt.Dimension;
 import java.awt.Insets;
 import java.awt.Toolkit;
+import java.sql.SQLException;
 import javax.swing.JFrame;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -147,7 +149,7 @@ public class fMaestrosMarco extends javax.swing.JFrame {
         btnGuardarprove9 = new javax.swing.JButton();
         btnCancelarprove9 = new javax.swing.JButton();
         btnSalirprove9 = new javax.swing.JButton();
-        jPanel7 = new javax.swing.JPanel();
+        JPanel1 = new javax.swing.JPanel();
         jLabel47 = new javax.swing.JLabel();
         txtRed = new javax.swing.JTextField();
         jScrollPane15 = new javax.swing.JScrollPane();
@@ -160,6 +162,7 @@ public class fMaestrosMarco extends javax.swing.JFrame {
         txtBusquedaRedes = new javax.swing.JTextField();
         jLabel23 = new javax.swing.JLabel();
         txtIdRrss = new javax.swing.JTextField();
+        btnBusquedaRedes = new javax.swing.JButton();
         jPanel10 = new javax.swing.JPanel();
         jLabel49 = new javax.swing.JLabel();
         jTextField15 = new javax.swing.JTextField();
@@ -1189,6 +1192,7 @@ public class fMaestrosMarco extends javax.swing.JFrame {
                 return types [columnIndex];
             }
         });
+        grRedes.setColumnSelectionAllowed(true);
         grRedes.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         grRedes.setFocusable(false);
         grRedes.setName(""); // NOI18N
@@ -1198,11 +1202,19 @@ public class fMaestrosMarco extends javax.swing.JFrame {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 grRedesMouseClicked(evt);
             }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                grRedesMouseReleased(evt);
+            }
         });
         jScrollPane15.setViewportView(grRedes);
         grRedes.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_INTERVAL_SELECTION);
         if (grRedes.getColumnModel().getColumnCount() > 0) {
-            grRedes.getColumnModel().getColumn(0).setResizable(false);
+            grRedes.getColumnModel().getColumn(0).setMinWidth(1);
+            grRedes.getColumnModel().getColumn(0).setPreferredWidth(80);
+            grRedes.getColumnModel().getColumn(0).setMaxWidth(80);
+            grRedes.getColumnModel().getColumn(2).setMinWidth(80);
+            grRedes.getColumnModel().getColumn(2).setPreferredWidth(80);
+            grRedes.getColumnModel().getColumn(2).setMaxWidth(80);
         }
 
         btnEditarRedes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vista/Edit-Document-icon.png"))); // NOI18N
@@ -1235,57 +1247,63 @@ public class fMaestrosMarco extends javax.swing.JFrame {
 
         jLabel23.setText("Buscar:");
 
-        javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
-        jPanel7.setLayout(jPanel7Layout);
-        jPanel7Layout.setHorizontalGroup(
-            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
+        btnBusquedaRedes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vista/search-icon.png"))); // NOI18N
+
+        javax.swing.GroupLayout JPanel1Layout = new javax.swing.GroupLayout(JPanel1);
+        JPanel1.setLayout(JPanel1Layout);
+        JPanel1Layout.setHorizontalGroup(
+            JPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, JPanel1Layout.createSequentialGroup()
                 .addGap(120, 154, Short.MAX_VALUE)
-                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel7Layout.createSequentialGroup()
+                .addGroup(JPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(JPanel1Layout.createSequentialGroup()
                         .addComponent(btnGuardarRedes, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(47, 47, 47)
                         .addComponent(btnCancelarRedes, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(44, 44, 44)
                         .addComponent(btnSalirRedes, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addGroup(jPanel7Layout.createSequentialGroup()
-                            .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(JPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addGroup(JPanel1Layout.createSequentialGroup()
+                            .addGroup(JPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(jLabel47, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(txtIdRrss))
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addGroup(jPanel7Layout.createSequentialGroup()
+                            .addGroup(JPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addGroup(JPanel1Layout.createSequentialGroup()
                                     .addComponent(txtRed, javax.swing.GroupLayout.PREFERRED_SIZE, 363, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGap(121, 121, 121))
-                                .addGroup(jPanel7Layout.createSequentialGroup()
+                                .addGroup(JPanel1Layout.createSequentialGroup()
                                     .addComponent(jLabel23)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                     .addComponent(txtBusquedaRedes, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(231, 231, 231))))
-                        .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addComponent(btnBusquedaRedes)
+                                    .addGap(144, 144, 144))))
+                        .addGroup(JPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(btnEditarRedes, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jScrollPane15, javax.swing.GroupLayout.PREFERRED_SIZE, 625, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addComponent(chkActivoRedes)))
                 .addGap(139, 139, 139))
         );
-        jPanel7Layout.setVerticalGroup(
-            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel7Layout.createSequentialGroup()
+        JPanel1Layout.setVerticalGroup(
+            JPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(JPanel1Layout.createSequentialGroup()
                 .addGap(14, 14, 14)
-                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(JPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtRed, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(chkActivoRedes)
                     .addComponent(jLabel47, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtBusquedaRedes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel23)
-                    .addComponent(txtIdRrss, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(JPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnBusquedaRedes)
+                    .addGroup(JPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(txtBusquedaRedes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel23)
+                        .addComponent(txtIdRrss, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(14, 14, 14)
                 .addComponent(jScrollPane15, javax.swing.GroupLayout.PREFERRED_SIZE, 331, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(26, 26, 26)
-                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                .addGroup(JPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                     .addComponent(btnEditarRedes, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnGuardarRedes, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnCancelarRedes, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1293,7 +1311,7 @@ public class fMaestrosMarco extends javax.swing.JFrame {
                 .addContainerGap(47, Short.MAX_VALUE))
         );
 
-        tabs.addTab("RRSS", jPanel7);
+        tabs.addTab("RRSS", JPanel1);
 
         jLabel49.setText("Nombre Categoría");
 
@@ -1849,14 +1867,26 @@ public class fMaestrosMarco extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCancelarRedesMouseClicked
 
     private void grRedesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_grRedesMouseClicked
+       
+       int fila = this.grRedes.getSelectedRow();
+       DefaultTableModel datosFila = (DefaultTableModel) this.grRedes.getModel();
+       
+       this.txtIdRrss.setText(datosFila.getValueAt(fila,0).toString());
+       this.txtRed.setText(datosFila.getValueAt(fila,1).toString());
+       this.chkActivoRedes.setSelected(Boolean.valueOf(datosFila.getValueAt(fila,2).toString()));  
+       
        this.btnCancelarRedes.setEnabled(true);
-       this.btnEditarRedes.setEnabled(true);
+       this.btnEditarRedes.setEnabled(true); 
     }//GEN-LAST:event_grRedesMouseClicked
+
+    private void grRedesMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_grRedesMouseReleased
+        grRedesMouseClicked(evt);
+    }//GEN-LAST:event_grRedesMouseReleased
 
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
+    public static void main(String args[]) throws SQLException {
         
     fMaestrosMarco vr= new fMaestrosMarco();
     ctrlRedes cr = new ctrlRedes(vr);
@@ -1865,6 +1895,8 @@ public class fMaestrosMarco extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel JPanel1;
+    public javax.swing.JButton btnBusquedaRedes;
     public javax.swing.JButton btnCancelarRedes;
     private javax.swing.JButton btnCancelarprove11;
     private javax.swing.JButton btnCancelarprove12;
@@ -1991,7 +2023,6 @@ public class fMaestrosMarco extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
-    private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
     private javax.swing.JPasswordField jPasswordField1;
