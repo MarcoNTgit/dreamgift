@@ -7,11 +7,12 @@ package vista;
 
 import controlador.ctrlRedes;
 
-import java.awt.Dimension;
-import java.awt.Insets;
-import java.awt.Toolkit;
+//import java.awt.Dimension;
+//import java.awt.Insets;
+//import java.awt.Toolkit;
 import java.sql.SQLException;
-import javax.swing.JFrame;
+import javax.swing.ImageIcon;
+//import javax.swing.JFrame;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -23,6 +24,8 @@ public class fMaestrosMarco extends javax.swing.JFrame {
     /** Creates new form fMaestros */
     public fMaestrosMarco() {
         initComponents();
+        setIconImage(new ImageIcon(getClass().getResource("../imgs/icono_dg.png")).getImage());
+        
     }
 
     /** This method is called from within the constructor to
@@ -1162,9 +1165,6 @@ public class fMaestrosMarco extends javax.swing.JFrame {
         jLabel47.setText("Nombre Red Social");
 
         txtRed.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                txtRedKeyPressed(evt);
-            }
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txtRedKeyReleased(evt);
             }
@@ -1197,11 +1197,7 @@ public class fMaestrosMarco extends javax.swing.JFrame {
         grRedes.setFocusable(false);
         grRedes.setName(""); // NOI18N
         grRedes.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_INTERVAL_SELECTION);
-        grRedes.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_INTERVAL_SELECTION);
         grRedes.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                grRedesMouseClicked(evt);
-            }
             public void mouseReleased(java.awt.event.MouseEvent evt) {
                 grRedesMouseReleased(evt);
             }
@@ -1229,8 +1225,8 @@ public class fMaestrosMarco extends javax.swing.JFrame {
         btnCancelarRedes.setText("Cancelar");
         btnCancelarRedes.setEnabled(false);
         btnCancelarRedes.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnCancelarRedesMouseClicked(evt);
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                btnCancelarRedesMouseReleased(evt);
             }
         });
 
@@ -1834,11 +1830,9 @@ public class fMaestrosMarco extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtRedKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtRedKeyPressed
-      
-        
-       if(this.txtIdRrss.getText().isEmpty()){
-          if(this.txtRed.getText().isBlank()==false){
+    private void txtRedKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtRedKeyReleased
+        if(this.txtIdRrss.getText().isEmpty()){
+          if(this.txtRed.getText().isEmpty()==false){
           this.btnCancelarRedes.setEnabled(true);
           this.btnGuardarRedes.setEnabled(true);
           }else{
@@ -1847,27 +1841,13 @@ public class fMaestrosMarco extends javax.swing.JFrame {
           this.btnGuardarRedes.setEnabled(false);
           }
        }
-    }//GEN-LAST:event_txtRedKeyPressed
-
-    private void txtRedKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtRedKeyReleased
-        txtRedKeyPressed(evt);
     }//GEN-LAST:event_txtRedKeyReleased
 
     private void cerrarVentana(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cerrarVentana
         this.setVisible(false);
     }//GEN-LAST:event_cerrarVentana
 
-    private void btnCancelarRedesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCancelarRedesMouseClicked
-       this.txtIdRrss.setText(null);
-       this.txtRed.setText(null);
-       this.chkActivoRedes.setSelected(false);
-       this.btnCancelarRedes.setEnabled(false);
-       this.btnEditarRedes.setEnabled(false);
-       this.btnGuardarRedes.setEnabled(false);
-    }//GEN-LAST:event_btnCancelarRedesMouseClicked
-
-    private void grRedesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_grRedesMouseClicked
-       
+    private void grRedesMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_grRedesMouseReleased
        int fila = this.grRedes.getSelectedRow();
        DefaultTableModel datosFila = (DefaultTableModel) this.grRedes.getModel();
        
@@ -1877,11 +1857,17 @@ public class fMaestrosMarco extends javax.swing.JFrame {
        
        this.btnCancelarRedes.setEnabled(true);
        this.btnEditarRedes.setEnabled(true); 
-    }//GEN-LAST:event_grRedesMouseClicked
-
-    private void grRedesMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_grRedesMouseReleased
-        grRedesMouseClicked(evt);
+       this.btnGuardarRedes.setEnabled(false);
     }//GEN-LAST:event_grRedesMouseReleased
+
+    private void btnCancelarRedesMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCancelarRedesMouseReleased
+       this.txtIdRrss.setText(null);
+       this.txtRed.setText(null);
+       this.chkActivoRedes.setSelected(false);
+       this.btnCancelarRedes.setEnabled(false);
+       this.btnEditarRedes.setEnabled(false);
+       this.btnGuardarRedes.setEnabled(false);
+    }//GEN-LAST:event_btnCancelarRedesMouseReleased
 
     /**
      * @param args the command line arguments
