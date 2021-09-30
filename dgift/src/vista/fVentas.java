@@ -16,6 +16,7 @@ public class fVentas extends javax.swing.JFrame {
      */
     public fVentas() {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -101,10 +102,10 @@ public class fVentas extends javax.swing.JFrame {
 
         jLabel2.setText("RUT Cliente");
 
-        jTextField1.setFont(new java.awt.Font("Calibri", 0, 12)); // NOI18N
+        jTextField1.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
         jTextField1.setText("jTextField1");
 
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vista/search-icon.png"))); // NOI18N
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imgs/binoculars-icon.png"))); // NOI18N
 
         jLabel4.setText("Nombre Cliente");
 
@@ -251,19 +252,19 @@ public class fVentas extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        btnEditarprove15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vista/Edit-Document-icon.png"))); // NOI18N
+        btnEditarprove15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imgs/edit.png"))); // NOI18N
         btnEditarprove15.setText("Editar");
 
-        btnGuardarprove15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vista/Save-icon.png"))); // NOI18N
+        btnGuardarprove15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imgs/salvar.png"))); // NOI18N
         btnGuardarprove15.setText("Guardar");
 
-        btnCancelarprove15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vista/Actions-edit-delete-icon.png"))); // NOI18N
+        btnCancelarprove15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imgs/cancelado.png"))); // NOI18N
         btnCancelarprove15.setText("Cancelar");
 
-        btnSalirprove15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vista/Log-Out-icon.png"))); // NOI18N
+        btnSalirprove15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imgs/Log-Out-icon.png"))); // NOI18N
         btnSalirprove15.setText("Salir");
 
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vista/search-icon.png"))); // NOI18N
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imgs/binoculars-icon.png"))); // NOI18N
 
         jTabbedPane1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
@@ -588,12 +589,12 @@ public class fVentas extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                     .addComponent(jLabel2)
                     .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1)
                     .addComponent(jLabel1)
                     .addComponent(jTextField11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3)
                     .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton2))
+                    .addComponent(jButton2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButton1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                     .addComponent(jLabel4)
@@ -636,7 +637,7 @@ public class fVentas extends javax.swing.JFrame {
                     .addComponent(btnCancelarprove15, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnGuardarprove15, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnEditarprove15, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         pack();
