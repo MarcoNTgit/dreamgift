@@ -9,6 +9,8 @@ package controlador;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.logging.Level;
@@ -47,13 +49,42 @@ public class ctrlRedes implements ActionListener{
         this.frm.grRedes.setRowSelectionAllowed(true);
         this.frm.grRedes.setColumnSelectionAllowed(false); 
         this.frm.txtIdRrss.setVisible(false);
+        this.frm.txtBusquedaRedes.addKeyListener(new KeyListener() {
+            
+            @Override
+            public void keyTyped(KeyEvent e) {
+                 //nada
+            }
+
+            @Override
+            public void keyPressed(KeyEvent e) {   
+                //nada      
+            }
+
+            @Override
+             public void keyReleased(KeyEvent e) {
+              if(frm.txtBusquedaRedes.getText().isEmpty()){     
+                 try {
+                 red.setNombre_red(frm.txtBusquedaRedes.getText());
+                 listarBusq(frm.grRedes,red);
+                 } catch (SQLException ex) {
+                 Logger.getLogger(ctrlRedes.class.getName()).log(Level.SEVERE, null, ex);
+                 }     
+              } 
+            }
+        });
+        
         red.setNombre_red(frm.txtBusquedaRedes.getText());
         listarBusq(frm.grRedes,red);
     }
 
     
+    
     @Override
+     
     public void actionPerformed(ActionEvent e) {
+        
+        
       if(e.getSource()== frm.btnGuardarRedes){
       red.setNombre_red(frm.txtRed.getText());
       red.setEs_activo((frm.chkActivoRedes.isSelected())?1:0);
@@ -86,6 +117,7 @@ public class ctrlRedes implements ActionListener{
                   red.setId_rrss(Integer.parseInt(frm.txtIdRrss.getText()));
                   listarBusq(frm.grRedes,red);
                   limpiarPantalla();
+                  red.setId_rrss(0);
               }else{
                   Toolkit.getDefaultToolkit().beep();
                   JOptionPane.showMessageDialog(null, "Error al Editar");           
