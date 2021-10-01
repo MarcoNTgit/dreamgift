@@ -3,10 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/devs/dgift/src/vista/fMaestros.java</file>
-            <file>file:/C:/devs/dgift/src/vista/fClientes.java</file>
-            <file>file:/C:/devs/dgift/src/vista/fLogin.java</file>
-            <file>file:/C:/devs/dgift/src/vista/fMain.java</file>
+            <file>file:/D:/devs/java/dreamgift/dgift/src/controlador/ControladorArticulos.java</file>
+            <file>file:/D:/devs/java/dreamgift/dgift/src/modelo/ArticuloDAO.java</file>
+            <file>file:/D:/devs/java/dreamgift/dgift/src/vista/fMaestros.java</file>
+            <file>file:/D:/devs/java/dreamgift/dgift/src/modelo/Articulos.java</file>
         </group>
     </open-files>
 </project-private>

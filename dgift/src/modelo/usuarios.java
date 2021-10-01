@@ -1,54 +1,58 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/**
+ * @author Carlos Thieme
+ * fecha   13/09/2021
+ * 
  */
 package modelo;
 
-/**
- *
- * @author Marco Bonilla
- */
-public class usuarios {
-    
-    private int id_usuario;
-    private String nombre_usuario;
-    private String clave_usuario;
-    private int es_activo;
 
-    public int getEs_activo() {
-        return es_activo;
+public class Usuarios {
+    String idUsuario;
+    String nombreUsuario;
+    String claveUsuario;
+    int estadoUsuario;
+
+    public Usuarios() {
     }
 
-    public void setEs_activo(int es_activo) {
-        this.es_activo = es_activo;
+    public Usuarios(String idUsuario, String nombreUsuario, String claveUsuario, int estadoUsuario) {
+        this.idUsuario = idUsuario;
+        this.nombreUsuario = nombreUsuario;
+        this.claveUsuario = claveUsuario;
+        this.estadoUsuario = estadoUsuario;
     }
 
-    public int getId_usuario() {
-        return id_usuario;
+    public String getIdUsuario() {
+        return idUsuario;
     }
 
-    public void setId_usuario(int id_usuario) {
-        this.id_usuario = id_usuario;
+    public void setIdUsuario(String idUsuario) {
+        this.idUsuario = idUsuario;
     }
 
-    public String getNombre_usuario() {
-        return nombre_usuario;
+    public String getNombreUsuario() {
+        return nombreUsuario;
     }
 
-    public void setNombre_usuario(String nombre_usuario) {
-        this.nombre_usuario = nombre_usuario;
+    public void setNombreUsuario(String nombreUsuario) {
+        this.nombreUsuario = nombreUsuario;
     }
 
-    public String getClave_usuario() {
-        return clave_usuario;
+    public String getClaveUsuario() {
+        return claveUsuario;
     }
 
-    public void setClave_usuario(String clave_usuario) {
-        this.clave_usuario = clave_usuario;
+    public void setClaveUsuario(String claveUsuario) {
+        this.claveUsuario = claveUsuario;
+    }
+
+    public int getEstadoUsuario() {
+        return estadoUsuario;
+    }
+
+    public void setEstadoUsuario(int estadoUsuario) {
+        this.estadoUsuario = estadoUsuario;
     }
     
     
 }
-
-
