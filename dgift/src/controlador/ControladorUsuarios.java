@@ -1,7 +1,7 @@
-/**
- * @author Carlos Thieme
- * fecha   13/09/2021
- * 
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
  */
 package controlador;
 
@@ -14,7 +14,10 @@ import modelo.Usuarios;
 import modelo.UsuariosDAO;
 import vista.fMaestros;
 
-
+/**
+ *
+ * @author caarlos
+ */
 public class ControladorUsuarios implements ActionListener{
     UsuariosDAO dao = new UsuariosDAO();
     Usuarios a = new Usuarios();
