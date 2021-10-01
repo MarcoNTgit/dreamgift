@@ -1,16 +1,13 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/**
+ * @author Carlos Thieme
+ * fecha   13/09/2021
+ * 
  */
 package vista;
 import vista.fMaestros;
 import vista.fVentas;
 
-/**
- *
- * @author user
- */
+
 public class fMain extends javax.swing.JFrame {
 
     /**

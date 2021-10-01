@@ -14,10 +14,7 @@ import modelo.Usuarios;
 import modelo.UsuariosDAO;
 import vista.fMaestros;
 
-/**
- *
- * @author caarlos
- */
+
 public class ControladorUsuarios implements ActionListener{
     UsuariosDAO dao = new UsuariosDAO();
     Usuarios a = new Usuarios();
