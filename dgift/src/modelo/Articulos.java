@@ -14,18 +14,24 @@ public class Articulos {
     int     stockArticulo;
     Date    fechaVence;
     int     idCategoria;
+    String  nombreCategoria;
     float   precioArticulo;
+    int     idEstado;
+    String  descripcionEstado;
 
     public Articulos() {
     }
 
-    public Articulos(int idArticulo, String nombreArticulo, int stockArticulo, Date fechaVence, int idCategoria, float precioArticulo) {
+    public Articulos(int idArticulo, String nombreArticulo, int stockArticulo, Date fechaVence, int idCategoria, String nombreCategoria, float precioArticulo, int idEstado, String descripcionEstado) {
         this.idArticulo = idArticulo;
         this.nombreArticulo = nombreArticulo;
         this.stockArticulo = stockArticulo;
         this.fechaVence = fechaVence;
         this.idCategoria = idCategoria;
+        this.nombreCategoria = nombreCategoria;
         this.precioArticulo = precioArticulo;
+        this.idEstado = idEstado;
+        this.descripcionEstado = descripcionEstado;
     }
 
     public int getIdArticulo() {
@@ -68,6 +74,14 @@ public class Articulos {
         this.idCategoria = idCategoria;
     }
 
+    public String getNombreCategoria() {
+        return nombreCategoria;
+    }
+
+    public void setNombreCategoria(String nombreCategoria) {
+        this.nombreCategoria = nombreCategoria;
+    }
+
     public float getPrecioArticulo() {
         return precioArticulo;
     }
@@ -75,6 +89,22 @@ public class Articulos {
     public void setPrecioArticulo(float precioArticulo) {
         this.precioArticulo = precioArticulo;
     }
-    
+
+    public int getIdEstado() {
+        return idEstado;
+    }
+
+    public void setIdEstado(int idEstado) {
+        this.idEstado = idEstado;
+    }
+
+    public String getDescripcionEstado() {
+        return descripcionEstado;
+    }
+
+    public void setDescripcionEstado(String descripcionEstado) {
+        this.descripcionEstado = descripcionEstado;
+    }
+
     
 }

@@ -4,6 +4,8 @@
  * and open the template in the editor.
  */
 package vista;
+import vista.fMaestros;
+import vista.fVentas;
 
 /**
  *
@@ -16,6 +18,7 @@ public class fMain extends javax.swing.JFrame {
      */
     public fMain() {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -31,11 +34,19 @@ public class fMain extends javax.swing.JFrame {
         jMenu3 = new javax.swing.JMenu();
         jMenu11 = new javax.swing.JMenu();
         jMenuItem2 = new javax.swing.JMenuItem();
+        basicCalendarPaneUI1 = new com.michaelbaranov.microba.calendar.ui.basic.BasicCalendarPaneUI();
+        basicDatePickerUI1 = new com.michaelbaranov.microba.calendar.ui.basic.BasicDatePickerUI();
+        defaultCalendarResources1 = new com.michaelbaranov.microba.calendar.DefaultCalendarResources();
+        microba1 = new com.michaelbaranov.microba.Microba();
+        windowsMarkerBarUI1 = new com.michaelbaranov.microba.marker.ui.windows.WindowsMarkerBarUI();
+        jToolBar1 = new javax.swing.JToolBar();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
+        mnuVentasClientes = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         jMenu4 = new javax.swing.JMenu();
         jMenu5 = new javax.swing.JMenu();
+        mnuConfigMaestros = new javax.swing.JMenuItem();
 
         jMenu6.setText("jMenu6");
 
@@ -47,7 +58,19 @@ public class fMain extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        jToolBar1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jToolBar1.setRollover(true);
+
         jMenu1.setText("Ventas");
+
+        mnuVentasClientes.setText("Ventas Clientes");
+        mnuVentasClientes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mnuVentasClientesActionPerformed(evt);
+            }
+        });
+        jMenu1.add(mnuVentasClientes);
+
         jMenuBar1.add(jMenu1);
 
         jMenu2.setText("Compras");
@@ -57,6 +80,15 @@ public class fMain extends javax.swing.JFrame {
         jMenuBar1.add(jMenu4);
 
         jMenu5.setText("Maestros");
+
+        mnuConfigMaestros.setText("Configurar Maestros");
+        mnuConfigMaestros.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mnuConfigMaestrosActionPerformed(evt);
+            }
+        });
+        jMenu5.add(mnuConfigMaestros);
+
         jMenuBar1.add(jMenu5);
 
         setJMenuBar(jMenuBar1);
@@ -65,15 +97,34 @@ public class fMain extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 737, Short.MAX_VALUE)
+            .addComponent(jToolBar1, javax.swing.GroupLayout.DEFAULT_SIZE, 737, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 403, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jToolBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(355, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void mnuConfigMaestrosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuConfigMaestrosActionPerformed
+        fMaestros fmae = new fMaestros();
+        fmae.setVisible(true);
+        fmae.pack();
+        fmae.setLocationRelativeTo(null);
+        this.dispose();
+
+    }//GEN-LAST:event_mnuConfigMaestrosActionPerformed
+
+    private void mnuVentasClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuVentasClientesActionPerformed
+        fVentas fventa = new fVentas();
+        fventa.setVisible(true);
+        fventa.pack();
+        fventa.setLocationRelativeTo(null);
+        this.dispose();
+    }//GEN-LAST:event_mnuVentasClientesActionPerformed
 
     /**
      * @param args the command line arguments
@@ -111,6 +162,9 @@ public class fMain extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private com.michaelbaranov.microba.calendar.ui.basic.BasicCalendarPaneUI basicCalendarPaneUI1;
+    private com.michaelbaranov.microba.calendar.ui.basic.BasicDatePickerUI basicDatePickerUI1;
+    private com.michaelbaranov.microba.calendar.DefaultCalendarResources defaultCalendarResources1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu11;
     private javax.swing.JMenu jMenu2;
@@ -120,5 +174,10 @@ public class fMain extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu6;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JToolBar jToolBar1;
+    private com.michaelbaranov.microba.Microba microba1;
+    private javax.swing.JMenuItem mnuConfigMaestros;
+    private javax.swing.JMenuItem mnuVentasClientes;
+    private com.michaelbaranov.microba.marker.ui.windows.WindowsMarkerBarUI windowsMarkerBarUI1;
     // End of variables declaration//GEN-END:variables
 }
